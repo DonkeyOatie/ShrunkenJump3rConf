@@ -1,6 +1,6 @@
 set nocompatible
 syntax on
-
+set tags=./tags;/
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -25,7 +25,9 @@ function MyDiff()
   endif
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
-color desert
+color vividchalk
+:set guioptions-=m
+:set guioptions-=T
 :imap jj <Esc>
 :set expandtab
 :set tabstop=4
@@ -34,6 +36,9 @@ color desert
 :set autoindent
 :set number
 :autocmd FileType make setlocal noexpandtab
+
+let g:miniBufExplMapWindowNavArrows=1
+let g:miniBufExplMapCTabSwitchBufs=1
 " lhs comments
 map ,# :s/^/#/<CR>
 map ,/ :s/^/\/\//<CR>
