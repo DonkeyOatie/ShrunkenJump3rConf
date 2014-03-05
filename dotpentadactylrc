@@ -1,0 +1,39 @@
+" ~/.pentadactylrc
+"
+
+loadplugins '\.(js|penta)$'
+group user
+
+" options """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set guioptions-=br
+set guioptions+=n
+set editor='mvim -f +<line> +"sil! call cursor(0, <column>)" <file>'
+set hlfind
+
+set defsearch=duckduckgo
+
+map jj <Esc>
+imap jj <Esc>
+vmap jj <Esc>
+cmap jj <Esc>
+
+" hintkeys """"""""""
+set hintkeys='asdfjkl;'
+highlight -a Hint text-transform: uppercase;
+
+" font options """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi Normal -a font-size: 15px !important;
+hi Normal -a font-family: Menlo !important;
+
+" custom mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map , <Leader>
+nmap -builtin <Leader>, :noh<CR>
+
+" For autocomplete, use [s]earch engine URLs, [l]ocation matches from Firefox's
+" history and bookmarks, local [f]iles, and [S]earch engine suggestions.
+set complete=slfS
+
+" Facebook pass keys (so we don't get multiple returns in facebook chat)
+group -description 'Pass keys to Facebook in insert mode' -locations=https://www.facebook.com facebookinsert
+imap <Return> <Pass>
+imap <S-Return> <Pass>
