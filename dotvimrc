@@ -12,35 +12,60 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 " RST plugin
 Bundle 'Rykka/riv.vim'
+"Vim gmail plugin
+
 
 filetype plugin indent on     " requiredset nocompatible
 
+" Folding
 set fdm=indent
 set foldnestmax=2
+
 syntax on
+
+" ctags
 set tags=./tags;/
+
+" Colors
 if has("gui_running")
     color vividchalk
 else
     color desert
 endif
+
+"disable top shortcut var
 :set guioptions-=m
 :set guioptions-=T
-:imap jj <Esc>
+
+" mappings
+:imap jj <Esc>:w<CR>
+:imap ,, <Esc>ZZ
 :map ; :
 map ack :Ack
+
+" tabs
 :set expandtab
 :set tabstop=4
 :set shiftwidth=4
 :set softtabstop=4
 :set autoindent
-:set number
 :autocmd FileType make setlocal noexpandtab
 
+" set line numbers
+:set number
+
+" git
 au FileType gitcommit set tw=72
 
-let g:miniBufExplMapWindowNavArrows=1
+" plugins
+let g:miniBufExplMapWindowNavVim=1
 let g:miniBufExplMapCTabSwitchBufs=1
+
+map <F2> :NERDTreeToggle<CR>
+map <S-F2> :NERDTree
+
+map ,t :CommandT<CR>
+
 " lhs comments
 map ,# :s/^/#/<CR>
 map ,/ :s/^/\/\//<CR>
@@ -52,7 +77,6 @@ map ,; :s/^/;/<CR>
 map ,- :s/^/--/<CR>
 map ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>
 
-map ,t :CommandT<CR>
 
 " wrapping comments
 map ,* :s/^\(.*\)$/\/\* \1 \*\//<CR>
@@ -60,6 +84,7 @@ map ,( :s/^\(.*\)$/\(\* \1 \*\)/<CR>
 map ,< :s/^\(.*\)$/<!-- \1 -->/<CR>
 map ,d :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>
 
+" full screen
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window.
@@ -73,6 +98,3 @@ else
     set columns=100
   endif
 endif
-map <F2> :NERDTreeToggle<CR>
-map <S-F2> :NERDTree
-map <F3> :TlistToggle<CR>
