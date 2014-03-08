@@ -14,8 +14,16 @@ Bundle 'gmarik/vundle'
 Bundle 'Rykka/riv.vim'
 "Vim gmail plugin
 
-
 filetype plugin indent on     " requiredset nocompatible
+
+let mapleader = ","
+let g:mapleader = ","
+
+" fast saving
+nmap <leader>w :w!<CR>
+
+set ruler
+set cmdheight=2
 
 " Folding
 set fdm=indent
@@ -27,15 +35,19 @@ syntax on
 set tags=./tags;/
 
 " Colors
+colorscheme desert
+set background=dark
+
 if has("gui_running")
-    color vividchalk
-else
-    color desert
+    set guioptions-=T
+    set guioptions+=e
+    set guioptions-=m
+    set t_Co=256
+    set guitablabel=%M\ %t
+    set lines=999 columns=999
 endif
 
 "disable top shortcut var
-:set guioptions-=m
-:set guioptions-=T
 
 " mappings
 :imap jj <Esc>:w<CR>
@@ -44,12 +56,34 @@ endif
 map ack :Ack
 
 " tabs
-:set expandtab
-:set tabstop=4
-:set shiftwidth=4
-:set softtabstop=4
-:set autoindent
-:autocmd FileType make setlocal noexpandtab
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set ai
+set si
+autocmd FileType make setlocal noexpandtab
+
+" searching
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set showmatch
+set mat=2
+map <space> /
+map <c-space> ?
+
+" Get rid of annoying bell on error
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" set no backup, most stuff is in git
+set nobackup
+set nowb
+set noswapfile
 
 " set line numbers
 :set number
@@ -84,17 +118,60 @@ map ,( :s/^\(.*\)$/\(\* \1 \*\)/<CR>
 map ,< :s/^\(.*\)$/<!-- \1 -->/<CR>
 map ,d :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>
 
-" full screen
-if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window.
-  set lines=999 columns=999
-else
-  " This is console Vim.
-  if exists("+lines")
-    set lines=50
-  endif
-  if exists("+columns")
-    set columns=100
-  endif
-endif
+" tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+
+map <leader>te :tabedit <c-r>expand("%:p:h")<cr>/
+
+" return to last edit position when opening files
+autocmd BufReadPost *
+    \ if line("'\'") > 0 && line("'\'") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+" remember info about open buffers on close
+set viminfo^=%
+
+" status bar
+set laststatus=2
+
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+
+" past from clipboard
+nmap <leader>cp "+gP
+
+" move lines of text using vim keys
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" for python, delete trailing whitespace on exit
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+
+" spell checking
+map <leader>ss :setlocal spell!<cr>
+
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+" remove windows ^M when econdings get messed up
+noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
