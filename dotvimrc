@@ -12,7 +12,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 " RST plugin
 Bundle 'Rykka/riv.vim'
-"Vim gmail plugin
+" PEP8 style checker
+Bundle 'andviro/flake8-vim'
 
 filetype plugin indent on     " requiredset nocompatible
 
@@ -28,6 +29,10 @@ set cmdheight=2
 " Folding
 set fdm=indent
 set foldnestmax=2
+
+" Stop vim matching the first file it fines in autocomplete
+set wildmode=longest:full
+set wildmenu
 
 syntax on
 
