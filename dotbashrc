@@ -1,0 +1,28 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+export WORKON_HOME=$HOME/.virtualenvs
+source "/usr/bin/virtualenvwrapper.sh"
+
+alias vim="gvim"
+alias jektr="workon jektr"
+alias ga="git add --all :/"
+alias gcm="git commit"
+alias gacm="git add --all :/ && git commit"
+alias wbc="cd ~/code/JektaBox/src/jektabox/webclient"
+alias clmg="cd ~/code/JektaBox/src/jektabox/webclient/clientmanager"
+alias uplr="cd ~/code/JektaBox/src/jektabox/uploader"
+alias clxy="cd ~/code/JektaBox/src/jektabox/clientproxy"
+
+bind 'set completion-ignore-case on'
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+# Run twolfson/sexy-bash-prompt
+. ~/.bash_prompt
