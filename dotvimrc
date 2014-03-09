@@ -18,7 +18,7 @@ Bundle 'andviro/flake8-vim'
 filetype plugin indent on     " requiredset nocompatible
 
 " when vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+autocmd! bufwritepost vimrc source ~/.vimrc
 
 " change buffer without saving
 set hid
@@ -40,13 +40,18 @@ set foldnestmax=2
 set wildmode=longest:full
 set wildmenu
 
+" all tab completion of buffers
+set wildchar=<Tab> wildmenu wildmode=full
+
+set backspace=indent,eol,start
+
 syntax on
 
 " ctags
 set tags=./tags;/
 
 " Colors
-colorscheme desert
+colorscheme molokai
 set background=dark
 
 if has("gui_running")
@@ -56,6 +61,8 @@ if has("gui_running")
     set t_Co=256
     set guitablabel=%M\ %t
     set lines=999 columns=999
+    set guioptions-=L
+    set guioptions-=r
 endif
 
 "disable top shortcut var
@@ -102,6 +109,11 @@ set noswapfile
 
 " set line numbers
 :set number
+" set line number color
+highlight LineNr guifg=#666666
+highlight ColorColumn ctermbg=darkgrey guibg=#2f2f2f
+set colorcolumn=79
+set ruler
 
 " git
 au FileType gitcommit set tw=72
@@ -112,6 +124,7 @@ let g:miniBufExplMapCTabSwitchBufs=1
 
 map <F2> :NERDTreeToggle<CR>
 map <S-F2> :NERDTree
+let NERDTreeIgnore = ['\.pyc$']
 
 map ,t :CommandT<CR>
 let g:CommandTMaxHeight=15
@@ -142,6 +155,9 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 
 map <leader>te :tabedit <c-r>expand("%:p:h")<cr>/
+
+" log into shell
+set shell=bash\ --login
 
 " return to last edit position when opening files
 autocmd BufReadPost *
