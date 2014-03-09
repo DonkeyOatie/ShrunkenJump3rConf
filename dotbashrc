@@ -5,9 +5,37 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+############
+# Virtualenv
+############
 export WORKON_HOME=$HOME/.virtualenvs
 source "/usr/bin/virtualenvwrapper.sh"
 
+#########
+# History
+#########
+
+# don't put duplicate lines in history
+HISTCONTROL=ignoredups:ignorespace
+
+# append to the history file instead of overwriting it
+shopt -s histappend
+
+# Set history size
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+#############
+# Window Size
+#############
+
+# check window size after each command and, if necessary
+# update the values of LINES and COLUMNS
+shopt -s checkwinsize
+
+#########
+# Alias's
+#########
 alias vim="gvim"
 alias jektr="workon jektr"
 alias ga="git add --all :/"
@@ -19,7 +47,30 @@ alias uplr="cd ~/code/JektaBox/src/jektabox/uploader"
 alias clxy="cd ~/code/JektaBox/src/jektabox/clientproxy"
 alias vimrc="vim ~/.vimrc"
 alias bashrc="vim ~/.bashrc"
+alias grep="grep --color=auto"
+alias ll="ls -alF"
+alias l="ls -CF"
 
+alias day="date +%A"
+alias cal="cal -3"
+alias epocht="date +%s"
+alias month="date +%B"
+alias mytime="date +%H:%M:%S"
+
+alias mkvenv="mkvirtualenv"
+alias rmvenv="rmvirtualenv"
+
+alias code="cd ~/code"
+alias documents="cd ~/Documents"
+alias downloads="cd ~/Downloads"
+alias dropbox="cd ~/Dropbox"
+alias virtualenvs="cd ~/.virtualenvs"
+alias home="cd ~/"
+alias irc="irssi"
+
+#############
+# Ignore case
+#############
 bind 'set completion-ignore-case on'
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
