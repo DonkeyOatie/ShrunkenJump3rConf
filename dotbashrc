@@ -17,6 +17,8 @@ alias wbc="cd ~/code/JektaBox/src/jektabox/webclient"
 alias clmg="cd ~/code/JektaBox/src/jektabox/webclient/clientmanager"
 alias uplr="cd ~/code/JektaBox/src/jektabox/uploader"
 alias clxy="cd ~/code/JektaBox/src/jektabox/clientproxy"
+alias vimrc="vim ~/.vimrc"
+alias bashrc="vim ~/.bashrc"
 
 bind 'set completion-ignore-case on'
 
