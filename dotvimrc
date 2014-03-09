@@ -14,6 +14,8 @@ Bundle 'gmarik/vundle'
 Bundle 'Rykka/riv.vim'
 " PEP8 style checker
 Bundle 'andviro/flake8-vim'
+" gitgutter
+Bundle 'airblade/vim-gitgutter'
 
 filetype plugin indent on     " requiredset nocompatible
 
@@ -128,7 +130,14 @@ let NERDTreeIgnore = ['\.pyc$']
 
 map ,t :CommandT<CR>
 let g:CommandTMaxHeight=15
+" lhs comments
+map ,# :s/^/#/<CR>
 set wildignore+=*.o,*.obj,*.pyc,*.swp
+
+" git gutter
+nmap <leader>tgg :GitGutterLineHighlightsToggle<cr>
+nmap <leader>nh <Plug>GitGutterNextHunk
+nmap <leader>bh <Plug>GitGutterPrevHunk
 
 " lhs comments
 map ,# :s/^/#/<CR>
