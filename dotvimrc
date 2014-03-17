@@ -16,11 +16,19 @@ Bundle 'Rykka/riv.vim'
 Bundle 'andviro/flake8-vim'
 " gitgutter
 Bundle 'airblade/vim-gitgutter'
+" Minibufexplr
+Bundle 'fholgado/minibufexpl.vim'  
+" NerdTree
+Bundle 'scrooloose/nerdtree'
+" SuperTab
+Bundle 'ervandew/supertab'
+"Jedi
+Bundle 'davidhalter/jedi-vim'
 
 filetype plugin indent on     " requiredset nocompatible
 
 " when vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
+autocmd! bufwritepost vimrc source $MYVIMRC
 
 " change buffer without saving
 set hid
@@ -62,9 +70,9 @@ if has("gui_running")
     set guioptions-=m
     set t_Co=256
     set guitablabel=%M\ %t
-    set lines=999 columns=999
     set guioptions-=L
     set guioptions-=r
+    set guifont=Monospace\ 8
 endif
 
 "disable top shortcut var
@@ -121,12 +129,19 @@ set ruler
 au FileType gitcommit set tw=72
 
 " plugins
-let g:miniBufExplMapWindowNavVim=1
-let g:miniBufExplMapCTabSwitchBufs=1
+set wmh=0
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+set wmw=0
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
 
 map <F2> :NERDTreeToggle<CR>
 map <S-F2> :NERDTree
 let NERDTreeIgnore = ['\.pyc$']
+
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#use_splits_not_buffers = "left"
 
 map ,t :CommandT<CR>
 let g:CommandTMaxHeight=15
