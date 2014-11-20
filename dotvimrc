@@ -2,63 +2,34 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " alternatively, pass a path where Vundle should install bundles
 "let path = '~/some/path/here'
 "call vundle#rc(path)
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
-" RST plugin
-Bundle 'Rykka/riv.vim'
+Plugin 'gmarik/vundle.vim'
 " PEP8 style checker
-Bundle 'andviro/flake8-vim'
+Plugin 'andviro/flake8-vim'
 " gitgutter
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 " Minibufexplr
-Bundle 'fholgado/minibufexpl.vim'  
+Plugin 'minibufexpl.vim'  
 " NerdTree
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " SuperTab
-Bundle 'ervandew/supertab'
-"Jedi
-Bundle 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
+" Taglist
+Plugin 'taglist.vim'
+" Command T
+Plugin 'wincent/Command-T'
 
+call vundle#end()
 filetype plugin indent on     " requiredset nocompatible
 
 " when vimrc is edited, reload it
 autocmd! bufwritepost vimrc source $MYVIMRC
-
-" change buffer without saving
-set hid
-
-let mapleader = ","
-let g:mapleader = ","
-
-" fast saving
-nmap <leader>w :w!<CR>
-
-set ruler
-set cmdheight=2
-
-" Folding
-set fdm=indent
-set foldnestmax=2
-
-" Stop vim matching the first file it fines in autocomplete
-set wildmode=longest:full
-set wildmenu
-
-" all tab completion of buffers
-set wildchar=<Tab> wildmenu wildmode=full
-
-set backspace=indent,eol,start
-
-syntax on
-
-" ctags
-set tags=./tags;/
 
 " Colors
 colorscheme molokai
@@ -75,17 +46,6 @@ if has("gui_running")
     set guifont=Monospace\ 8
 endif
 
-"disable top shortcut var
-
-" mappings
-imap jj <Esc>:w<CR>
-imap ,, <Esc>ZZ
-map ; :
-map ack :Ack
-
-" close all
-map <leader><C-q> :qall<cr>
-
 " tabs
 set expandtab
 set tabstop=4
@@ -93,7 +53,46 @@ set shiftwidth=4
 set softtabstop=4
 set ai
 set si
+:set number " line numbers
 autocmd FileType make setlocal noexpandtab
+
+" change buffer without saving
+set hid
+
+let mapleader = ","
+let g:mapleader = ","
+
+
+set backspace=indent,eol,start
+set ruler
+set cmdheight=2
+set tags=./tags;/ " ctags
+syntax on
+
+" Stop vim matching the first file it finds in autocomplete
+set wildmode=longest:full
+set wildmenu
+
+" all tab completion of buffers
+set wildchar=<Tab> wildmenu wildmode=full
+
+" fast saving
+noremap <leader>w :w<CR>
+
+" mappings
+inoremap jj <Esc>:w<CR>
+noremap ,, <Esc>ZZ
+noremap ; :
+
+
+" Setup django
+au BufRead,BufNewFile *.html set filetype=htmldjango
+
+" Loader definitions
+noremap <F3> :TlistToggle<CR>
+
+" close all
+noremap <leader><C-q> :qall<cr>
 
 " searching
 set ignorecase
@@ -103,8 +102,8 @@ set incsearch
 set showmatch
 set mat=2
 set magic
-map <space> /
-map <c-space> ?
+noremap <space> /
+noremap <c-space> ?
 
 " Get rid of annoying bell on error
 set noerrorbells
@@ -117,8 +116,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" set line numbers
-:set number
 " set line number color
 highlight LineNr guifg=#666666
 highlight ColorColumn ctermbg=darkgrey guibg=#2f2f2f
@@ -150,7 +147,7 @@ map ,# :s/^/#/<CR>
 set wildignore+=*.o,*.obj,*.pyc,*.swp
 
 " git gutter
-nmap <leader>tgg :GitGutterLineHighlightsToggle<cr>
+nmap <leader>gg :GitGutterLineHighlightsToggle<cr>
 nmap <leader>nh <Plug>GitGutterNextHunk
 nmap <leader>bh <Plug>GitGutterPrevHunk
 
@@ -171,14 +168,6 @@ map ,* :s/^\(.*\)$/\/\* \1 \*\//<CR>
 map ,( :s/^\(.*\)$/\(\* \1 \*\)/<CR>
 map ,< :s/^\(.*\)$/<!-- \1 -->/<CR>
 map ,d :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>
-
-" tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-
-map <leader>te :tabedit <c-r>expand("%:p:h")<cr>/
 
 " log into shell
 set shell=bash\ --login
