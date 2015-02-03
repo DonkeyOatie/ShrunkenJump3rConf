@@ -24,6 +24,8 @@ Plugin 'ervandew/supertab'
 Plugin 'taglist.vim'
 " Command T
 Plugin 'wincent/Command-T'
+" GoLand
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 filetype plugin indent on     " requiredset nocompatible
@@ -33,7 +35,6 @@ autocmd! bufwritepost vimrc source $MYVIMRC
 
 " Colors
 colorscheme molokai
-set background=dark
 
 if has("gui_running")
     set guioptions-=T
@@ -51,6 +52,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 set ai
 set si
 :set number " line numbers
@@ -121,6 +123,7 @@ highlight LineNr guifg=#666666
 highlight ColorColumn ctermbg=darkgrey guibg=#2f2f2f
 set colorcolumn=79
 set ruler
+nnoremap <F5> :set hlsearch!<CR>
 
 " git
 au FileType gitcommit set tw=72

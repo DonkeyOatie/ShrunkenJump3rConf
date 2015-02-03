@@ -36,17 +36,11 @@ shopt -s checkwinsize
 #########
 # Alias's
 #########
-alias vim="gvim"
-alias jektr="workon jektr"
 alias ga="git add --all :/"
 alias gcm="git commit"
 alias gacm="git add --all :/ && git commit"
 alias gp="git push"
 alias gb="git checkout -b"
-alias wbc="cd ~/code/JektaBox/src/jektabox/webclient"
-alias clmg="cd ~/code/JektaBox/src/jektabox/webclient/clientmanager"
-alias uplr="cd ~/code/JektaBox/src/jektabox/uploader"
-alias clxy="cd ~/code/JektaBox/src/jektabox/clientproxy"
 alias vimrc="vim ~/.vimrc"
 alias bashrc="vim ~/.bashrc"
 alias grep="grep --color=auto"
