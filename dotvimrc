@@ -22,13 +22,18 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
 " Taglist
 Plugin 'taglist.vim'
-" Command T
-Plugin 'wincent/Command-T'
-" GoLand
+
 Plugin 'fatih/vim-go'
 
 call vundle#end()
 filetype plugin indent on     " requiredset nocompatible
+
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+au FileType go nmap <Leader>i <Plug>(go-info)
 
 " when vimrc is edited, reload it
 autocmd! bufwritepost vimrc source $MYVIMRC
@@ -57,6 +62,9 @@ set ai
 set si
 :set number " line numbers
 autocmd FileType make setlocal noexpandtab
+au BufRead,BufNewFile *.go set filetype=go 
+au BufRead,BufNewFile *.py.erb set filetype=python 
+autocmd Filetype go setlocal ts=8 sts=8 sw=8 noexpandtab
 
 " change buffer without saving
 set hid
@@ -127,6 +135,11 @@ nnoremap <F5> :set hlsearch!<CR>
 
 " git
 au FileType gitcommit set tw=72
+
+au BufRead,BufNewFile *.rst setlocal wrapmargin=72
+au BufRead,BufNewFile *.rst setlocal textwidth=72
+au BufRead,BufNewFile *.txt setlocal wrapmargin=72
+au BufRead,BufNewFile *.txt setlocal textwidth=72
 
 " plugins
 set wmh=0
@@ -205,6 +218,7 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.go :call DeleteTrailingWS()
 
 " spell checking
 map <leader>ss :setlocal spell!<cr>

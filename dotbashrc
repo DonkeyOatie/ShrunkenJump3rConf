@@ -40,12 +40,12 @@ alias ga="git add --all :/"
 alias gcm="git commit"
 alias gacm="git add --all :/ && git commit"
 alias gp="git push"
-alias gb="git checkout -b"
 alias vimrc="vim ~/.vimrc"
 alias bashrc="vim ~/.bashrc"
 alias grep="grep --color=auto"
 alias ll="ls -alF"
 alias l="ls -CF"
+alias yum="sudo yum"
 
 alias day="date +%A"
 alias cal="cal -3"
@@ -61,17 +61,28 @@ alias documents="cd ~/Documents"
 alias downloads="cd ~/Downloads"
 alias dropbox="cd ~/Dropbox"
 alias virtualenvs="cd ~/.virtualenvs"
-alias home="cd ~/"
+alias h="cd ~/"
 alias irc="irssi"
+alias il="i3lock"
+alias zmail="mutt -F ~/.zmuttrc"
+alias gmail="mutt"
+alias zssh="ssh -p 2323"
+alias td="todo"
+alias thn="tomahawk --next > /dev/null 2>&1"
+alias thr="tomahawk --prev > /dev/null 2>&1"
+alias thp="tomahawk --playpause > /dev/null 2>&1"
 
 #############
 # Ignore case
 #############
 bind 'set completion-ignore-case on'
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
 # Run twolfson/sexy-bash-prompt
 . ~/.bash_prompt
+
+export EDITOR="vim"
+
+export GOPATH="/home/nathan/code/go_workspace/"
+
+export PATH="$PATH:$HOME/.rvm/bin:/usr/local/go/bin:${GOPATH//://bin:}/bin" # Add RVM to PATH for scripting
+export CHEF_DIR="/home/nathan/"
