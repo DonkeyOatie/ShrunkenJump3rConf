@@ -146,6 +146,7 @@ nnoremap <F5> :set hlsearch!<CR>
 
 " git
 au FileType gitcommit set tw=72
+au FileType gitcommit colorscheme PaperColor
 
 au BufRead,BufNewFile *.rst setlocal wrapmargin=72
 au BufRead,BufNewFile *.rst setlocal textwidth=72
