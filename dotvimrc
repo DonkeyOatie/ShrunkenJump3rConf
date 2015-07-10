@@ -25,6 +25,12 @@ Plugin 'taglist.vim'
 
 Plugin 'fatih/vim-go'
 
+Plugin 'NLKNguyen/papercolor-theme'
+
+Plugin 'bling/vim-airline'
+
+Plugin 'hdima/python-syntax'
+
 call vundle#end()
 filetype plugin indent on     " requiredset nocompatible
 
@@ -39,9 +45,14 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 autocmd! bufwritepost vimrc source $MYVIMRC
 
 " Colors
-colorscheme molokai
+colorscheme PaperColor-Dark
+set t_Co=256
+
+set undofile
+set undodir=~/.vim/undodir
 
 if has("gui_running")
+    colorscheme PaperColor
     set guioptions-=T
     set guioptions+=e
     set guioptions-=m
@@ -75,7 +86,7 @@ let g:mapleader = ","
 
 set backspace=indent,eol,start
 set ruler
-set cmdheight=2
+set cmdheight=1
 set tags=./tags;/ " ctags
 syntax on
 
@@ -238,3 +249,17 @@ function! HasPaste()
     en
     return ''
 endfunction
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>gs <Plug>(go-info)
+au FileType go nmap <Leader>re <Plug>(go-rename)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
