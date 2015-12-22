@@ -15,7 +15,7 @@ Plugin 'andviro/flake8-vim'
 " gitgutter
 Plugin 'airblade/vim-gitgutter'
 " Minibufexplr
-Plugin 'minibufexpl.vim'  
+Plugin 'minibufexpl.vim'
 " NerdTree
 Plugin 'scrooloose/nerdtree'
 " SuperTab
@@ -73,8 +73,8 @@ set ai
 set si
 :set number " line numbers
 autocmd FileType make setlocal noexpandtab
-au BufRead,BufNewFile *.go set filetype=go 
-au BufRead,BufNewFile *.py.erb set filetype=python 
+au BufRead,BufNewFile *.go set filetype=go
+au BufRead,BufNewFile *.py.erb set filetype=python
 autocmd Filetype go setlocal ts=8 sts=8 sw=8 noexpandtab
 
 " change buffer without saving
